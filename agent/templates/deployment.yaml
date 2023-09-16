@@ -7,14 +7,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: sample-spring-kotlin
+      app: {{ .name }}
   template:
     metadata:
       labels:
-        app: sample-spring-kotlin
+        app: {{ .name }}
     spec:
       containers:
-      - name: sample-spring-kotlin
+      - name: {{ .name }}
         image: piomin/sample-spring-kotlin:1.4.8
         ports:
         - containerPort: 8080
