@@ -1,7 +1,9 @@
+{{- range .Values.agent }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-spring-kotlin
+  name: {{ .name }}
 spec:
   selector:
     matchLabels:
@@ -17,3 +19,5 @@ spec:
         ports:
         - containerPort: 8080
           name: http
+
+{{- end}}
