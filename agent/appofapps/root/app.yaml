@@ -13,3 +13,7 @@ spec:
     targetRevision: multiple-cluster
   sources: []
   project: default
+  syncPolicy:
+    automated:
+      prune: true
+      sync: true
