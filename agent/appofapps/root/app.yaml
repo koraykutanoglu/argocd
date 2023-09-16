@@ -8,8 +8,8 @@ spec:
     namespace: test
     server: 'https://kubernetes.default.svc'
   source:
-    path: appset
+    path: agent/appofapps
     repoURL: 'https://github.com/koraykutanoglu/argocd.git'
-    targetRevision: main
+    targetRevision: multiple-cluster
   sources: []
   project: default
