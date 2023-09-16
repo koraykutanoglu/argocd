@@ -20,6 +20,9 @@ spec:
         repoURL: https://github.com/koraykutanoglu/argocd.git
         targetRevision: multiple-cluster
         path: agent/templates
+        helm:
+          valueFiles:
+          - "values.yaml"
       destination:
         server: '{{url}}'
         namespace: test
