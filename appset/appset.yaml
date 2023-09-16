@@ -9,11 +9,11 @@ spec:
     metadata:
       name: '{{name}}-guestbook'
     spec:
-      project: "default"
+      project: default
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps/
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: in-cluster
-        namespace: guestbook
+        server: https://kubernetes.default.svc
+        namespace: test
