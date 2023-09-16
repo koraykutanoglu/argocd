@@ -1,8 +1,8 @@
-apiVersion: argoproj.io/v1
+apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: test-hello-world-appset
-  namespace: argocd
+  namespace: test
 spec:
   # See docs for available generators and their specs.
   generators:
