@@ -26,3 +26,6 @@ spec:
     preserveResourcesOnDeletion: false
   # Alpha feature to determine the order in which ApplicationSet applies changes.
   strategy:
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: test
