@@ -12,9 +12,9 @@ spec:
     spec:
       project: default
       source: 
-        repoURL: https://github.com/piomin/openshift-cluster-config.git
-        targetRevision: HEAD
-        path: apps/simple
+        repoURL: https://github.com/koraykutanoglu/argocd.git
+        targetRevision: main
+        path: app
       destination:
         server: '{{server}}'
         namespace: demo
