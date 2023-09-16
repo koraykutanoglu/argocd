@@ -5,11 +5,13 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters:
-    - name: cluster-1
-      server: https://cluster-1-api-server-url
-    - name: cluster-2
-      server: https://cluster-2-api-server-url
+  - list:
+      elements:
+      - cluster: in-cluster
+        url: https://kubernetes.default.svc
+#     - cluster: engineering-prod
+#       url: https://kubernetes.default.svc
+#       foo: bar
   template:
     metadata:
       name: '{{name}}-app' 
