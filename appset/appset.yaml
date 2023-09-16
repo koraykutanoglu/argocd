@@ -1,24 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: helloworld-application-set
+  name: guestbook
 spec:
   generators:
-    - name: helloworld-app-generator
-      clusters:
-        - name: cluster-1
-          namespace: default
-        - name: cluster-2
-          namespace: default
-  template:
+  - list: 
+      # Parameters are generated based on this cluster list, to be substituted
+      # into the template below.
+      elements: 
+      - cluster: engineering-dev
+        url: https://1.2.3.4
+      - cluster: engineering-prod
+        url: https://2.4.6.8
+      - cluster: finance-preprod
+        url: https://9.8.7.6
+  template: 
+    # An Argo CD Application template, with support for parameter substitution 
+    # with values from parameters generated above.
     metadata:
-      name: helloworld-app
+      name: '{{cluster}}-guestbook'
     spec:
       project: default
       source:
-        repoURL: https://github.com/your-username/helloworld-app.git
-        path: /
-        targetRevision: main
+        repoURL: https://github.com/argoproj-labs/applicationset.git
+        targetRevision: HEAD
+        path: examples/list-generator/guestbook/{{cluster}}
       destination:
-        server: https://argocd-server-url
-        namespace: my-namespace
+        server: '{{url}}'
+        namespace: guestbook
