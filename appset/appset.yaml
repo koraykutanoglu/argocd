@@ -1,24 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: test-hello-world-appset
-  namespace: test
+  name: team-one-product-one
+  namespace: team-one-cd
 spec:
-  # See docs for available generators and their specs.
   generators:
-  - list:
-      elements:
-      - cluster: https://kubernetes.default.svc
-  template:
-    metadata:
-      name: test-hello-world-app
-    spec:
-      project: my-project
-      source:
-        repoURL: https://github.com/koraykutanoglu/argocd.git
-        path: app
-        targetRevision: main
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: test
-
+    list:
+    - id: infra
+      project: infra-project
+    - id: team-two
+      project: team-two-project
+    template:
+      metadata:
+        name: '{{name}}-escalation'
+      spec:
+        project: "{{project}}"
