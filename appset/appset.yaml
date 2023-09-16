@@ -20,12 +20,13 @@ spec:
       name: test-hello-world-app
     spec:
       project: my-project
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: test
   # This sync policy pertains to the ApplicationSet, not to the Applications it creates.
   syncPolicy:
     # Determines whether the controller will delete Applications when an ApplicationSet is deleted.
     preserveResourcesOnDeletion: false
   # Alpha feature to determine the order in which ApplicationSet applies changes.
   strategy:
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: test
+
