@@ -19,7 +19,7 @@ spec:
       source: 
         repoURL: https://github.com/koraykutanoglu/argocd.git
         targetRevision: multiple-cluster
-        path: agent/templates
+        path: agent
       destination:
         server: '{{url}}'
         namespace: test
