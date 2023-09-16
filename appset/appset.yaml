@@ -12,6 +12,6 @@ spec:
       project: team-two-project
     template:
       metadata:
-        name: '{{name}}-escalation'
+        name: test
       spec:
         project: "{{project}}"
