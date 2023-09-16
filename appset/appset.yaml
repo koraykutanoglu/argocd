@@ -1,24 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: tenant-apps
+  name: helloworld-application-set
 spec:
   generators:
-    - git:
-        repoURL: git@github.com:example-tenant-apps.git
-        revision: HEAD
-        files:
-          - path: "argocd/tenant-discovery/**/config.json"
+    - name: helloworld-app-generator
+      clusters:
+        - name: cluster-1
+          namespace: test
+          cluster:
+            url: https://kubernetes.default.svc
   template:
     metadata:
-      name: '{{tenant.name}}'
+      name: helloworld-app
     spec:
       project: default
       source:
         repoURL: https://github.com/koraykutanoglu/argocd.git
-        targetRevision: main
         path: app
+        targetRevision: main
       destination:
-        server: '{{k8s_cluster.address}}'
+        server: https://kubernetes.default.svc
         namespace: test
-      syncPolicy: { }
