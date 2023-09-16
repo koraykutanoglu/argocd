@@ -1,30 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: tenant-apps
 spec:
   generators:
-  - list: 
-      # Parameters are generated based on this cluster list, to be substituted
-      # into the template below.
-      elements: 
-      - cluster: engineering-dev
-        url: https://1.2.3.4
-      - cluster: engineering-prod
-        url: https://2.4.6.8
-      - cluster: finance-preprod
-        url: https://9.8.7.6
-  template: 
-    # An Argo CD Application template, with support for parameter substitution 
-    # with values from parameters generated above.
+    - git:
+        repoURL: git@github.com:example-tenant-apps.git
+        revision: HEAD
+        files:
+          - path: "argocd/tenant-discovery/**/config.json"
+  template:
     metadata:
-      name: '{{cluster}}-guestbook'
+      name: '{{tenant.name}}'
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj-labs/applicationset.git
+        repoURL: git@github.com:example-tenant-configurations.git
         targetRevision: HEAD
-        path: examples/list-generator/guestbook/{{cluster}}
+        path: '{{tenant.region}}/tenants/{{tenant.name}}'
+        helm:
+          valueFiles:
+            - values.{{tenant.name}}.yaml
       destination:
-        server: '{{url}}'
-        namespace: guestbook
+        server: '{{k8s_cluster.address}}'
+        namespace: prod
+      syncPolicy: { }
