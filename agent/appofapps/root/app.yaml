@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-apps
+  name: mainapp
 spec:
   destination:
     name: ''
@@ -16,4 +16,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      sync: true
+      selfHeal: true

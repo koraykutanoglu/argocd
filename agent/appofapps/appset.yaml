@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: sample-spring-boot
+  name: appset
   namespace: argocd
 spec:
   generators:
   - clusters: {} 
   template:
     metadata:
-      name: '{{name}}-sample-spring-boot' 
+      name: '{{name}}-app' 
     spec:
       project: default
       source: 
