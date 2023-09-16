@@ -1,22 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: helloworld-application-set
 spec:
   generators:
-  - list:
-      elements:
-      - cluster: local
-        url: https://kubernetes.default.svc
+    - name: helloworld-app-generator
+      clusters:
+        - name: cluster-1
+          namespace: default
+        - name: cluster-2
+          namespace: default
   template:
     metadata:
-      name: '{{cluster}}-guestbook'
+      name: helloworld-app
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj/argo-cd.git
-        targetRevision: HEAD
-        path: applicationset/examples/list-generator/guestbook/{{cluster}}
+        repoURL: https://github.com/your-username/helloworld-app.git
+        path: /
+        targetRevision: main
       destination:
-        server: '{{url}}'
-        namespace: guestbook
+        server: https://argocd-server-url
+        namespace: my-namespace
