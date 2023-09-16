@@ -7,7 +7,7 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: '{{name}}-guestbook'
+      name: guestbook
     spec:
       project: default
       source:
