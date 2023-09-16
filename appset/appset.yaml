@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: team-one-product-one
-  namespace: team-one-cd
+  namespace: test
 spec:
   generators:
     list:
