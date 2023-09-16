@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: appset
-  namespace: argocd
+  namespace: test
 spec:
   generators:
   - list:
@@ -22,7 +22,7 @@ spec:
         path: agent/templates
       destination:
         server: '{{url}}'
-        namespace: demo
+        namespace: test
       syncPolicy: 
         automated:
           selfHeal: true
