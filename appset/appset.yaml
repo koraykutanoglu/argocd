@@ -15,7 +15,7 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: https://kubernetes.default.svc
+        server: in-cluster
         namespace: test
       syncPolicy:
         automated:
