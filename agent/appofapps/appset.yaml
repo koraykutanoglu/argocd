@@ -5,7 +5,11 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters: {} 
+  - clusters:
+    - name: cluster-1
+      server: https://cluster-1-api-server-url
+    - name: cluster-2
+      server: https://cluster-2-api-server-url
   template:
     metadata:
       name: '{{name}}-app' 
