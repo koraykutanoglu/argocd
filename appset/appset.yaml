@@ -16,10 +16,11 @@ spec:
     metadata:
       name: '{{cluster}}-guestbook'
     spec:
+      project: default
       source:
-        repoURL: https://github.com/infra-team/cluster-deployments.git
+        repoURL: https://github.com/argoproj/argo-cd.git
         targetRevision: HEAD
-        path: guestbook/{{cluster}}
+        path: applicationset/examples/list-generator/guestbook/{{cluster}}
       destination:
         server: '{{url}}'
         namespace: guestbook
