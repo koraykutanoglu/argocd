@@ -1,2 +1,3 @@
 agent:
-  - name: testapps
+  - test
+  - testapp

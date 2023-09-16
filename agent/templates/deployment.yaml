@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ .name }}
-        image: piomin/sample-spring-kotlin:1.4.8
+        image: nginx
         ports:
         - containerPort: 8080
           name: http
