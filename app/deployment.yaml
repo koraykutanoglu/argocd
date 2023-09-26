@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-spring-kotlin
+  name: sample-spring-kotlinxxx
 spec:
   selector:
     matchLabels:
