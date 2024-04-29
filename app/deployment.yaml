@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: aaaa
   namespace: test
+  labels:
+    appstest: true
 spec:
   replicas: 3
   selector:
