@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aaaa
-  namespace: argocdv2
+  namespace: test
   labels:
     appstest: tests
 spec:
