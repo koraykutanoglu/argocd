@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: sample-spring-boot
-  namespace: argocd
 spec:
   generators:
   - clusters: {} 
