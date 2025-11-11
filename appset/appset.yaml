@@ -1,25 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: sample-spring-boot
+  name: simple-appset
+  namespace: argocd
 spec:
+  # generator: burada hangi elementlerden application üretileceğini söylüyoruz.
   generators:
-  - clusters: {} 
+    - list:
+        elements:
+          - name: guestbook
+            path: guestbook
+            url: https://kubernetes.default.svc
+          - name: frontend
+            path: frontend
+            url: https://kubernetes.default.svc
+
+  # template: her element için oluşturulacak ArgoCD Application şablonu
   template:
     metadata:
-      name: '{{name}}-sample-spring-boot' 
+      name: '{{name}}'       # element.name ile değişecek (guestbook, frontend)
     spec:
       project: default
-      source: 
-        repoURL: https://github.com/koraykutanoglu/argocd.git
-        targetRevision: main
-        path: app
+      source:
+        repoURL: 'https://github.com/your-org/your-repo.git'
+        targetRevision: HEAD
+        path: '{{path}}'     # element.path ile değişecek
       destination:
-        server: '{{server}}'
-        namespace: demo
-      syncPolicy: 
+        server: '{{url}}'    # element.url ile değişecek
+        namespace: default
+      syncPolicy:
         automated:
-          selfHeal: true
           prune: true
-        syncOptions:
-          - CreateNamespace=true
+          selfHeal: true
