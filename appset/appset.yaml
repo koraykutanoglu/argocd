@@ -8,9 +8,6 @@ spec:
   generators:
     - list:
         elements:
-          - name: guestbook
-            path: guestbook
-            url: https://kubernetes.default.svc
           - name: frontend
             path: frontend
             url: https://kubernetes.default.svc
